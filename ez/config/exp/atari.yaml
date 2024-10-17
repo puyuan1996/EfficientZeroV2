@@ -5,6 +5,7 @@ agent_name: atari_agent
 env:
   env: Atari
   game: Asterix
+  # game: Pong
   base_seed: 0
   n_skip: 4
   n_stack: 4
@@ -148,7 +149,9 @@ model:
 # worker process allocation
 actors:
   data_worker: 1
-  batch_worker: 8  # oriMCTS 16
+  # batch_worker: 8  # oriMCTS 16
+  batch_worker: 1
+
 
 # wandb
 wandb:
