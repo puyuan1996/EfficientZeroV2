@@ -4,7 +4,8 @@ agent_name: dmc_state_agent
 # env setting
 env:
   env: DMC
-  game: hopper_hop
+  # game: hopper_hop
+  game: cartpole_swingup
   base_seed: 0
   n_skip: 2
   n_stack: 1
@@ -48,8 +49,11 @@ train:
   offline_training_steps: 20000     # 20 * 1000
   start_transitions: 2000       # 2 * 1000
 
-  eval_n_episode: 10          # prev 10
-  eval_interval: 5000
+  # eval_n_episode: 10          # prev 10
+  # eval_interval: 5000
+
+  eval_n_episode: 0          # prev 10
+  eval_interval: 500000000
 
   self_play_update_interval: 100   # prev 100
   reanalyze_update_interval: 200   # prev 200
@@ -161,7 +165,8 @@ model:
 # worker process allocation
 actors:
   data_worker: 1
-  batch_worker: 10
+  # batch_worker: 10
+  batch_worker: 1
 
 # wandb
 wandb:

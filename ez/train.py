@@ -87,8 +87,9 @@ def start_ddp_trainer(rank, config):
         model.set_weights(final_weights)
         save_path = Path(config.save_path) / 'recordings' / 'final'
 
-        scores = eval(agent, model, config.train.eval_n_episode, save_path, config)
-        print('final score: ', np.mean(scores))
+        # TODO: dmc opengl render incompatibility
+        # scores = eval(agent, model, config.train.eval_n_episode, save_path, config)
+        # print('final score: ', np.mean(scores))
 
 
 def train(rank, agent, manager, logger, config):
@@ -115,9 +116,10 @@ def train(rank, agent, manager, logger, config):
         time.sleep(1)
         final_weights, final_model = ray.get(train_workers)
 
-    epi_scores = eval(agent, final_model, 10, Path(config.save_path) / 'evaluation' / 'final', config,
-                           max_steps=27000, use_pb=False, verbose=config.eval.verbose)
-    print(f'final_mean_score={epi_scores.mean():.3f}')
+    # TODO: dmc opengl render incompatibility
+    # epi_scores = eval(agent, final_model, 10, Path(config.save_path) / 'evaluation' / 'final', config,
+    #                        max_steps=27000, use_pb=False, verbose=config.eval.verbose)
+    # print(f'final_mean_score={epi_scores.mean():.3f}')
 
     # join process
     if rank == 0:
